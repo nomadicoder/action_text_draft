@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  include Draftable
 
   # GET /articles
   # GET /articles.json
@@ -37,20 +38,20 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
-  def update
-    respond_to do |format|
-      if @article.update(article_params)
-        @article.update_attribute("description", article_params["draft_description"]) if article_params["publish"] == "1"
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PATCH/PUT /articles/1
+  # # PATCH/PUT /articles/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @article.update(article_params)
+  #       @article.update_attribute("description", article_params["draft_description"]) if article_params["publish"] == "1"
+  #       format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @article }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @article.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /articles/1
   # DELETE /articles/1.json

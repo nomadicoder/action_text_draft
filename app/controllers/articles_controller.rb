@@ -42,6 +42,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+        @article.update_attribute("description", article_params["draft_description"]) if article_params["publish"] == "1"
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
@@ -69,6 +70,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title)
+      params.require(:article).permit(:title, :description, :draft_description, :publish)
     end
 end

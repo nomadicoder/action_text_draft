@@ -16,6 +16,21 @@
     <%= form.text_field :title %>
   </div>
 
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.rich_text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :draft_description %>
+    <%= form.rich_text_area :draft_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publish %>
+    <%= form.check_box :publish %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
